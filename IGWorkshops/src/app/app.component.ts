@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
-
 import { AngularFire } from 'angularfire2';
 import { LoginPage } from '../pages/login/login';
 
@@ -12,7 +12,7 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   rootPage: any = HomePage;
 
-  constructor(platform: Platform, private af: AngularFire) {
+  constructor(platform: Platform, private af: AngularFire, private statusBar: StatusBar, private splashscreen: SplashScreen) {
     this.af.auth.subscribe(auth => {
       if (!auth)
         this.rootPage = LoginPage;
@@ -20,8 +20,8 @@ export class MyApp {
         this.rootPage = HomePage;
     });
     platform.ready().then(() => {
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      statusBar.styleDefault();
+      splashscreen.hide();
     });
   }
 }

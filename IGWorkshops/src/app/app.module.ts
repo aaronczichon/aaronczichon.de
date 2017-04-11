@@ -5,6 +5,9 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
 import { AngularFireModule } from 'angularfire2';
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { BrowserModule } from '@angular/platform-browser';
 
 var config = {
     apiKey: "<YOUR-API-KEY>",
@@ -22,6 +25,7 @@ var config = {
     SignupPage
   ],
   imports: [
+    BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(config)
   ],
@@ -32,6 +36,10 @@ var config = {
     LoginPage,
     SignupPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    StatusBar,
+    SplashScreen
+    ]
 })
 export class AppModule {}
