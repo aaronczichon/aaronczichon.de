@@ -8,3 +8,5 @@ This repository contains all projects which are related to articles on [aaronczi
     * [Sample Project](https://github.com/Inoverse/aaronczichon.de/tree/master/IGWorkshops)
 * [Sending FCM Push using Cloud Functions for Firebase](https://aaronczichon.de/2017/03/13/firebase-cloud-functions/)
     * [Sample Project](https://github.com/Inoverse/aaronczichon.de/tree/master/IGWorkshops_cloudFunctions)
+* [Ionic and Firebase: Saving Images to Firebase Storage](https://aaronczichon.de/2017/04/18/ionic-firebase-storage/)
+    * [Sample Project](https://github.com/Inoverse/aaronczichon.de/tree/master/IGWorkshops_FirebaseStorage) 

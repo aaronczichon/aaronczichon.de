@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="this.af.auth.logout()">
+        <ion-icon name="power"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <button ion-button full (click)="takePicture()">Take Picture</button>
+  <button ion-button full (click)="downloadImageUrls()">Show Images</button>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12 col-sm-4 col-md-3 col-lg-2 *ngFor="let image of imageUrls">
+        <img [src]="image" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
