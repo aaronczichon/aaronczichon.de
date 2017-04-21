@@ -2,7 +2,7 @@ let functions = require('firebase-functions');
 let admin = require('firebase-admin');
 admin.initializeApp(functions.config().firebase);
 
-exports.sendPush = functions.database.ref('/projects/${id}').onWrite(event => {
+exports.sendPush = functions.database.ref('/projects/{id}').onWrite(event => {
     let projectStateChanged = false;
     let projectCreated = false;
     let projectData = event.data.val();
