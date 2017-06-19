@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
-import { AngularFire } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-signup',
@@ -17,7 +17,7 @@ export class SignupPage {
     private navCtrl: NavController,
     private navParams: NavParams,
     private alertCtrl: AlertController,
-    private af: AngularFire) {
+    private afAuth: AngularFireAuth) {
     this.signupData.email = this.navParams.get('email');
   }
 
@@ -33,10 +33,7 @@ export class SignupPage {
     }
 
     // Firebase Signup Code
-    this.af.auth.createUser({
-      email: this.signupData.email,
-      password: this.signupData.password
-    })
+    this.afAuth.auth.createUserWithEmailAndPassword(this.signupData.email, this.signupData.password)
     .then(auth => {
       // Could do something with the Auth-Response
       console.log(auth);

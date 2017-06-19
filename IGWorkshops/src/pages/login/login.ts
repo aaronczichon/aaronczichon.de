@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
-import { AngularFire, AuthMethods, AuthProviders } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Component({
   selector: 'page-login',
@@ -12,17 +12,10 @@ export class LoginPage {
     email: '',
     password: ''
   }
-  constructor(private navCtrl: NavController, private af: AngularFire, private toastCtrl: ToastController) { }
+  constructor(private navCtrl: NavController, private afAuth: AngularFireAuth, private toastCtrl: ToastController) { }
 
   login() {
-    // Login Code her
-    this.af.auth.login({
-      email: this.loginData.email,
-      password: this.loginData.password
-    }, {
-      method: AuthMethods.Password,
-      provider: AuthProviders.Password
-    })
+    this.afAuth.auth.signInWithEmailAndPassword(this.loginData.email, this.loginData.password)
     .then(auth => {
       // Do custom things with auth
     })
