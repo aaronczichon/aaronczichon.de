@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFire } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { ImageProvider } from '../../providers/image-provider';
@@ -21,7 +21,7 @@ export class HomePage {
 
   constructor(
     private navCtrl: NavController,
-    private af: AngularFire,
+    private afAuth: AngularFireAuth,
     private camera: Camera,
     private imageSrv: ImageProvider
   ) {
@@ -36,7 +36,7 @@ export class HomePage {
       .then(data => {
         let base64Image = 'data:image/jpeg;base64,' + data;
 
-        return this.imageSrv.uploadImage(base64Image, this.af.auth.getAuth().uid);
+        return this.imageSrv.uploadImage(base64Image, this.afAuth.auth.currentUser.uid);
       })
       .then(data => {
         this.images.push(data.a.name);
@@ -50,7 +50,7 @@ export class HomePage {
   private downloadImageUrls() {
     let promiseList = [];
     for (let i = 0; i < this.images.length; i++) {
-      let promise = this.imageSrv.getImage(this.af.auth.getAuth().uid, this.images[i]);
+      let promise = this.imageSrv.getImage(this.afAuth.auth.currentUser.uid, this.images[i]);
       promiseList.push(promise);
     }
 
@@ -256,7 +256,7 @@ AIEOwCxGnIMiACDQAd0VfZhgiZ+jsuYkTyagOAbLABG074NW+d6Le2Te9DTpaD/jW7f3s6QP+hpA
 aF/m96H8P8qpphZ5asUGnkyAQAfsraC8U7YdrpGKPXlnd2ELZGev4HaVMvr9d33v2hTw1wFQHpfc
 `;
 
-    this.imageSrv.uploadImage(base64Image, this.af.auth.getAuth().uid)
+    this.imageSrv.uploadImage(base64Image, this.afAuth.auth.currentUser.uid)
       .then(data => {
         this.images.push(data.a.name);
         localStorage.setItem('images', JSON.stringify(this.images));

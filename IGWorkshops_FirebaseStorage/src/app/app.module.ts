@@ -10,14 +10,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserModule } from '@angular/platform-browser';
 import { Camera } from '@ionic-native/camera';
 import { ImageProvider } from '../providers/image-provider';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 var config = {
-    apiKey: "AIzaSyDZA9-OBR87cawiTk7m8tyOrmdIToiRNho",
-    authDomain: "igworkshops-39c1d.firebaseapp.com",
-    databaseURL: "https://igworkshops-39c1d.firebaseio.com",
-    projectId: "igworkshops-39c1d",
-    storageBucket: "igworkshops-39c1d.appspot.com",
-    messagingSenderId: "403236346189"
+    apiKey: "<YOUR-API-KEY>",
+    authDomain: "<YOUR-DOMAIN>.firebaseapp.com",
+    databaseURL: "https://<YOUR-PROJECT-NAME>.firebaseio.com",
+    storageBucket: "<YOUR-PROJECT-NAME>.appspot.com",
+    messagingSenderId: "<YOUR-SENDER-ID>"
   };
 
 @NgModule({
@@ -30,7 +30,8 @@ var config = {
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp(config)
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

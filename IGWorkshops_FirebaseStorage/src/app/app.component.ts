@@ -3,7 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
-import { AngularFire } from 'angularfire2';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../pages/login/login';
 
 @Component({
@@ -12,8 +12,8 @@ import { LoginPage } from '../pages/login/login';
 export class MyApp {
   rootPage: any = HomePage;
 
-  constructor(platform: Platform, private af: AngularFire, private statusBar: StatusBar, private splashscreen: SplashScreen) {
-    this.af.auth.subscribe(auth => {
+  constructor(platform: Platform, private afAuth: AngularFireAuth, private statusBar: StatusBar, private splashscreen: SplashScreen) {
+    this.afAuth.authState.subscribe(auth => {
       if (!auth)
         this.rootPage = LoginPage;
       else
