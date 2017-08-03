@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { SignupPage } from '../signup/signup';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @Component({
   selector: 'page-login',
@@ -31,5 +32,10 @@ export class LoginPage {
 
   signup() {
     this.navCtrl.push(SignupPage, { email: this.loginData.email });
+  }
+
+  loginFacebook() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+    .then((res) => console.log(res));
   }
 }

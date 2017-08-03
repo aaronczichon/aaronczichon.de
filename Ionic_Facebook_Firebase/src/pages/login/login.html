@@ -16,5 +16,6 @@
     </ion-item>
   </ion-list>
   <button full ion-button (click)="login()" [disabled]="!loginData.email || !loginData.password">Login</button>
+  <button full ion-button (click)="loginFacebook()">Login with Facebook</button>
   <a href="#" (click)="signup()">Signup for an Account</a>
 </ion-content>

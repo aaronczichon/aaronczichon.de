@@ -11,11 +11,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 var config = {
-    apiKey: "<YOUR-API-KEY>",
-    authDomain: "<YOUR-DOMAIN>.firebaseapp.com",
-    databaseURL: "https://<YOUR-PROJECT-NAME>.firebaseio.com",
-    storageBucket: "<YOUR-PROJECT-NAME>.appspot.com",
-    messagingSenderId: "<YOUR-SENDER-ID>"
+    apiKey: "AIzaSyDZA9-OBR87cawiTk7m8tyOrmdIToiRNho",
+    authDomain: "igworkshops-39c1d.firebaseapp.com",
+    databaseURL: "https://igworkshops-39c1d.firebaseio.com",
+    projectId: "igworkshops-39c1d",
+    storageBucket: "igworkshops-39c1d.appspot.com",
+    messagingSenderId: "403236346189"
   };
 
 @NgModule({
