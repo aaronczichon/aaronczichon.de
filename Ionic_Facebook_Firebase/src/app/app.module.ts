@@ -9,14 +9,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { BrowserModule } from '@angular/platform-browser';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { Facebook } from '@ionic-native/facebook';
 
 var config = {
-    apiKey: "AIzaSyDZA9-OBR87cawiTk7m8tyOrmdIToiRNho",
-    authDomain: "igworkshops-39c1d.firebaseapp.com",
-    databaseURL: "https://igworkshops-39c1d.firebaseio.com",
-    projectId: "igworkshops-39c1d",
-    storageBucket: "igworkshops-39c1d.appspot.com",
-    messagingSenderId: "403236346189"
+    apiKey: "YOUR-CONFIG",
+    authDomain: "YOUR-CONFIG",
+    databaseURL: "YOUR-CONFIG",
+    projectId: "YOUR-CONFIG",
+    storageBucket: "YOUR-CONFIG",
+    messagingSenderId: "YOUR-CONFIG"
   };
 
 @NgModule({
@@ -42,7 +43,8 @@ var config = {
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     StatusBar,
-    SplashScreen
-    ]
+    SplashScreen,
+    Facebook
+    ],
 })
 export class AppModule {}
