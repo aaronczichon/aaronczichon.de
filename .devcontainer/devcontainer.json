@@ -1,0 +1,18 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/typescript-node
+{
+	"name": "Node.js & TypeScript",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+	"features": {
+		"ghcr.io/devcontainers-community/npm-features/prettier:1": {}
+	},
+	"mounts": [
+    "source=${localEnv:HOME}/sourcecode/devcontainer-sharing,target=/workspaces/shared,type=bind,consistency=cached"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": ["esbenp.prettier-vscode", "mutantdino.resourcemonitor", "astro-build.astro-vscode", "unifiedjs.vscode-mdx"]
+		}
+	}
+}
