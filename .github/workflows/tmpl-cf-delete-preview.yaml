@@ -1,0 +1,49 @@
+name: Delete Cloudflare Page
+
+on: 
+  workflow_call:
+    inputs:
+      REPOSITORY:
+        required: true
+        type: string
+      REPOSITORY_NAME:
+        required: true
+        type: string
+      PULL_REQUEST_NUMBER:
+        required: true
+        type: string
+    secrets:
+      GH_TOKEN:
+        required: true
+      CLOUDFLARE_API_TOKEN:
+        required: true
+      CLOUDFLARE_ACCOUNT_ID:
+        required: true
+
+jobs:
+  delete-preview-deployment:
+    name: Delete Preview Deployment
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get branch name
+        id: get-branch
+        run: echo "branch=$(gh pr view $PR_NO --repo $REPO --json headRefName --jq '.headRefName')" >> $GITHUB_OUTPUT
+        env:
+          REPO: ${{ inputs.REPOSITORY }}
+          PR_NO: ${{ inputs.PULL_REQUEST_NUMBER }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+
+      - name: Delete via API
+        run: |
+          DEPLOY_BRANCH="${{ steps.get-branch.outputs.branch }}"
+          deployment_ids=$(curl -s -X GET "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/pages/projects/${{ inputs.REPOSITORY_NAME }}/deployments" \
+            -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            | jq -r --arg DEPLOY_BRANCH "$DEPLOY_BRANCH" '.result[] | select(.deployment_trigger.metadata.branch == $DEPLOY_BRANCH) | .id')
+    
+          for deployment_id in $deployment_ids; do
+            echo "Deleting deployment $deployment_id"
+            curl -s -X DELETE "https://api.cloudflare.com/client/v4/accounts/${{ secrets.CLOUDFLARE_ACCOUNT_ID }}/pages/projects/${{ inputs.REPOSITORY_NAME }}/deployments/$deployment_id?force=true" \
+              -H "Authorization: Bearer ${{ secrets.CLOUDFLARE_API_TOKEN }}" \
+              -H "Content-Type: application/json"
+          done
