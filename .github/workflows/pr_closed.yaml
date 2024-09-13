@@ -14,5 +14,5 @@ jobs:
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
     with:
       REPOSITORY: ${{ github.repository }}
-      REPOSITORY_NAME: ${{ github.event.repository.name }}
+      REPOSITORY_NAME: ${{ secrets.CLOUDFLARE_PROJECT_NAME }}
       PULL_REQUEST_NUMBER: ${{ github.event.pull_request.number }}
